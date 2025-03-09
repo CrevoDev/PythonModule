@@ -1,3 +1,3 @@
-﻿from .injector import InstanceInjector
+﻿from .dependency_injector import DependencyInjector
 
-Injector = InstanceInjector()
+Injector = DependencyInjector()

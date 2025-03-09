@@ -30,23 +30,37 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="python_module\inject.py" />
-    <Compile Include="python_module\injector.py" />
+    <Compile Include="python_module\dependency_injector.py" />
     <Compile Include="python_module\injector_instance.py" />
     <Compile Include="python_module\module.py" />
+    <Compile Include="python_module\typing\module_type.py" />
+    <Compile Include="python_module\typing\__init__.py" />
     <Compile Include="python_module\_logger.py" />
     <Compile Include="python_module\__init__.py" />
     <Compile Include="PythonModule.py" />
+    <Compile Include="secondary_module\second_module.py" />
+    <Compile Include="secondary_module\services\provider.py" />
+    <Compile Include="secondary_module\services\service.py" />
+    <Compile Include="secondary_module\services\service_base.py" />
+    <Compile Include="secondary_module\services\__init__.py" />
+    <Compile Include="secondary_module\__init__.py" />
     <Compile Include="setup.py" />
     <Compile Include="tests\tests_core.py" />
     <Compile Include="tests\__init__.py" />
+    <Compile Include="__init__.py" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="python_module\typing\" />
+    <Folder Include="secondary_module\" />
+    <Folder Include="secondary_module\services\" />
     <Folder Include="tests\" />
     <Folder Include="python_module\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include=".gitignore" />
-    <Content Include="README.txt" />
+    <Content Include="README.md" />
+    <Content Include="secondary_module\README.txt" />
+    <Content Include="version.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in

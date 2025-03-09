@@ -1,8 +1,14 @@
 ﻿from setuptools import setup, find_packages
+from os import path
+
+# Obtendo o caminho do arquivo README.md
+this_directory = path.abspath(path.dirname(__file__))
+with open(path.join(this_directory, 'README.md'), encoding='utf-8') as f:
+    long_description = f.read()
 
 setup(
     name="py-module-injector",
-    version="0.1.0",
+    version="0.1.2",
     description="Uma biblioteca de modularização em python",
     author="Cleverson Pedroso",
     author_email="cleverson212121@gmail.com",
@@ -18,4 +24,6 @@ setup(
             "python-module = python_module.__main__:main",
         ],
     },
+    long_description=long_description,
+    long_description_content_type='text/markdown',  # Especificando o tipo de conteúdo como markdown
 )

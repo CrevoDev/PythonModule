@@ -2,12 +2,11 @@
 from python_module import Inject, Module, Injector
 
 class Provider:
-    _log = "Provider Injetado"
+    def __init__(self, log):
+        self._log = log
 
-    @classmethod
-    def set_log(cls, log):
-        cls._log = log
-        return cls
+    def set_log(self, log):
+        self._log = log
 
     def get(self):
         return self._log
@@ -24,7 +23,11 @@ class Service:
         return 'Service processed'
 
 @Module(
-    instances=[Provider.set_log("Log Alterado")]
+    instances=[
+        {
+            'implementation': Provider,
+            'factory': lambda: Provider(log="Log Alterado")}
+        ]
 )
 class ModuleTest:
     def __init__(self):
@@ -40,7 +43,7 @@ class TestDependencyInjection(unittest.TestCase):
         self.assertEqual(module.run(), 'Service processed')
 
     def test_provider_injection(self):
-        provider = Provider()
+        provider = Provider("Log Alterado")
         self.assertEqual(provider.get(), "Log Alterado")
 
     def test_service_injection(self):

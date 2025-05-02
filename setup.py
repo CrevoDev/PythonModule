@@ -8,7 +8,7 @@ with open(path.join(this_directory, 'README.md'), encoding='utf-8') as f:
 
 setup(
     name="py-module-injector",
-    version="0.1.2",
+    version="0.1.3",
     description="Uma biblioteca de modularização em python",
     author="Cleverson Pedroso",
     author_email="cleverson212121@gmail.com",

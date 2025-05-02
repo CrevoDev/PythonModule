@@ -69,8 +69,6 @@ def Module(*, module_name: str = None, instances: List[RegisterModuleType] = [])
                         factory
                     )
 
-                logger.success(
-                    f'✅ Instance registered {implementation.__name__}')
             super(cls, self).__init__(*args, **kwargs)
         cls.__init__ = __init__
         return cls

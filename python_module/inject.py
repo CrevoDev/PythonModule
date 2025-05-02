@@ -34,8 +34,6 @@ def Inject(target=None, module_name: str = None):
         @wraps(original_init)
         def wrapped_init(self, *args, **kwargs):
             # Debugging and logging
-            logger.message(self.__module__)
-            logger.warning(f"🔹 Starting injection on class ({target.__name__})...")
             injected_kwargs = {}
             nonlocal module_name
 
@@ -52,7 +50,6 @@ def Inject(target=None, module_name: str = None):
                         instance = Injector.get(module_name, type_hint.__name__)
                         if instance:
                             injected_kwargs[name] = instance
-                            logger.success(f"✅ Instance {name} ({type_hint.__name__}) injected in {target.__name__}")
 
             # Atualiza kwargs com os valores injetados
             kwargs.update(injected_kwargs)
@@ -67,10 +64,8 @@ def Inject(target=None, module_name: str = None):
         @wraps(target)
         def wrapped_function(self, *args, **kwargs):
             # Debugging and logging
-            logger.message(self.__module__)
-            logger.warning(f"🔹 Starting injection on method ({target.__name__})...")
             injected_kwargs = {}
-            module_name = get_decorator_calling_module()
+            module_name = inspect.stack()[1].frame.f_globals.get('__name__', None)
 
             # Get the signature of the method
             func_signature = inspect.signature(target)
@@ -85,7 +80,6 @@ def Inject(target=None, module_name: str = None):
                         instance = Injector.get(module_name, type_hint.__name__)
                         if instance:
                             injected_kwargs[name] = instance
-                            logger.success(f"✅ Instance {name} ({type_hint.__name__}) injected in {target.__name__}")
 
             # Atualiza kwargs com os valores injetados
             kwargs.update(injected_kwargs)
